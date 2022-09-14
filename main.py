@@ -1,5 +1,5 @@
 from python.file_manager import read_points, generate_normal_sample
-from python.process import graham_algorithm
+from python.process import graham_algorithm, sort_points
 import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon
 import sys
@@ -20,6 +20,7 @@ def run(filename: str) -> None:
     with open('output.txt', 'w') as f:
         # generate_normal_sample(200)
         points = read_points(filename)
+        sort_points(points)
         while len(points) > 0:
             convex_hull = graham_algorithm(points)
             # draw_plot(points, convex_hull)

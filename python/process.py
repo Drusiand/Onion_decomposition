@@ -20,7 +20,6 @@ def graham_algorithm(points: List[Tuple[float, float]]):
 
 
 def graham_step(points: List[Tuple[float, float]], traversal_order: bool) -> List[Tuple[float, float]]:
-    sort_points(points)
     stack = list()
     for point in points:
         stack.append(point)
