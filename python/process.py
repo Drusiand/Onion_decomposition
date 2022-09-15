@@ -1,9 +1,10 @@
 from typing import Tuple, List
 
 
-def is_left_turn(point_1: Tuple[float, float], point_2: Tuple[float, float], point_3: Tuple[float, float]):
+def oriented_square(point_1: Tuple[float, float], point_2: Tuple[float, float], point_3: Tuple[float, float]):
+    print((point_2[0] - point_1[0]) * (point_3[1] - point_1[1]) - (point_2[1] - point_1[1]) * (point_3[0] - point_1[0]))
     return (point_2[0] - point_1[0]) * (point_3[1] - point_1[1]) - (point_2[1] - point_1[1]) * (
-            point_3[0] - point_1[0]) > 0
+            point_3[0] - point_1[0])
 
 
 def sort_points(points: List[Tuple[float, float]]):
@@ -25,7 +26,10 @@ def graham_step(points: List[Tuple[float, float]], traversal_order: bool) -> Lis
         stack.append(point)
         if len(stack) < 3:
             continue
-        while is_left_turn(stack[-3], stack[-2], stack[-1]) is traversal_order:
+        if oriented_square(stack[-3], stack[-2], stack[-1]) == 0:
+            stack.pop(-2)
+            continue
+        while (oriented_square(stack[-3], stack[-2], stack[-1]) > 0) is traversal_order:
             stack.pop(-2)
             if len(stack) < 3:
                 break

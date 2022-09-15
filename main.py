@@ -28,7 +28,7 @@ def run(filename: str) -> None:
                 points.remove(point)
                 f.write(str(point[0]) + ',' + str(point[1]) + ';')
             f.write('\n')
-            if len(points) <= 3:
+            if len(points) < 3:
                 for point in points:
                     f.write(str(point[0]) + ',' + str(point[1]) + ';')
                 f.write('\n')
