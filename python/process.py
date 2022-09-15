@@ -26,11 +26,10 @@ def graham_step(points: List[Tuple[float, float]], traversal_order: bool) -> Lis
         stack.append(point)
         if len(stack) < 3:
             continue
-        if oriented_square(stack[-3], stack[-2], stack[-1]) == 0:
-            stack.pop(-2)
-            continue
-        while (oriented_square(stack[-3], stack[-2], stack[-1]) > 0) is traversal_order:
+        while (oriented_square(stack[-3], stack[-2], stack[-1]) > 0) is traversal_order or \
+                oriented_square(stack[-3], stack[-2], stack[-1]) == 0:
             stack.pop(-2)
             if len(stack) < 3:
                 break
+
     return stack
