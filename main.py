@@ -18,16 +18,16 @@ def draw_plot(points, hull):
 
 def run(filename: str) -> None:
     with open('output.txt', 'w') as f:
-        # generate_normal_sample(200)
         points = read_points(filename)
         sort_points(points)
         while len(points) > 0:
-            convex_hull = graham_algorithm(points)
-            # draw_plot(points, convex_hull)
+            convex_hull, points = graham_algorithm(points)
+            draw_plot(points, convex_hull)
             for point in convex_hull:
-                points.remove(point)
                 f.write(str(point[0]) + ',' + str(point[1]) + ';')
             f.write('\n')
+            if len(points) == 0:
+                break
             if len(points) < 3:
                 for point in points:
                     f.write(str(point[0]) + ',' + str(point[1]) + ';')
