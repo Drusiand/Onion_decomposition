@@ -22,7 +22,7 @@ def run(filename: str) -> None:
         sort_points(points)
         while len(points) > 0:
             convex_hull, points = graham_algorithm(points)
-            draw_plot(points, convex_hull)
+            # draw_plot(points, convex_hull)
             for point in convex_hull:
                 f.write(str(point[0]) + ',' + str(point[1]) + ';')
             f.write('\n')
